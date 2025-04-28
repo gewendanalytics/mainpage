@@ -1,6 +1,7 @@
 library(shiny)
 library(shinyjs)
 library(rsconnect)
+rsconnect::writeManifest()
 
 ui <- fluidPage(
   useShinyjs(),
