@@ -12,7 +12,7 @@ for (pkg in packages) {
 }
 
 
-Sys.setlocale(locale = "Turkish")
+# Sys.setlocale(locale = "Turkish")
 
 # ÇOK DİLLİ İÇERİK ----
 
