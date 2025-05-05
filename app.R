@@ -1,17 +1,8 @@
-
-
-if (interactive()) {
-  # sadece yerel çalışırken kurulum denesin
-  options(repos = c(CRAN = "https://cran.r-project.org"))
-  packages <- c("shiny", "shinythemes", "shinyjs", "fontawesome", "waiter")
-  installed_packages <- rownames(installed.packages())
-  for (pkg in packages) {
-    if (!pkg %in% installed_packages) {
-      install.packages(pkg, dependencies = TRUE)
-    }
-  }
-}
-
+library(shiny)
+library(shinythemes)
+library(shinyjs)
+library(fontawesome)
+library(waiter) # Yükleme animasyonu için
 
 
 Sys.setlocale(locale = "Turkish")
