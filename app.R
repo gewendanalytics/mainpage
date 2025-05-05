@@ -12,6 +12,9 @@ if (interactive()) {
   }
 }
 
+if (!require("shinythemes")) install.packages("shinythemes")
+library(shinythemes)
+
 
 
 # Sys.setlocale(locale = "Turkish")
