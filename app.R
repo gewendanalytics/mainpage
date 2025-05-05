@@ -232,6 +232,7 @@ product_data <- list(
   )
 )
 
+# UI ----
 
 ui <- fluidPage(
   theme = shinytheme("flatly"),
