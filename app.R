@@ -1,8 +1,16 @@
-library(shiny)
-library(shinythemes)
-library(shinyjs)
-library(fontawesome)
-library(waiter) # Yükleme animasyonu için
+# Gerekli paketleri listeleyin
+packages <- c("shiny", "shinythemes", "shinyjs", "fontawesome", "waiter")
+
+# Paketlerin yüklenme durumunu kontrol edip yükleme işlemi
+installed_packages <- rownames(installed.packages())
+
+for (pkg in packages) {
+  if (!pkg %in% installed_packages) {
+    install.packages(pkg, dependencies = TRUE)
+  }
+  library(pkg, character.only = TRUE)
+}
+
 
 Sys.setlocale(locale = "Turkish")
 
