@@ -1,9 +1,10 @@
+
+
 library(shiny)
 library(shinythemes)
 library(shinyjs)
 library(fontawesome)
 library(waiter) # Yükleme animasyonu için
-
 
 Sys.setlocale(locale = "Turkish")
 
@@ -21,7 +22,7 @@ translations <- list(
     
     # Ana sayfa
     "main_title" = "ProInsure Analytics",
-    "main_subtitle" = "Geleceğe Dönük Aktüeryal Zeka",
+    "main_subtitle" = "Future-Proof Actuarial Intelligence",
     
     "slide1_title" = "Aktüeryal Mükemmellik",
     "slide1_subtitle" = "Gelişmiş Hesaplama Teknolojisi",
@@ -1568,6 +1569,111 @@ ui <- fluidPage(
   animation: pulse 2s infinite;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
+
+/* Yatay kaydırmalı kategoriler için stil */
+.horizontal-categories {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 204, 255, 0.5) rgba(0, 8, 20, 0.3);
+}
+
+.horizontal-categories::-webkit-scrollbar {
+  height: 8px;
+}
+
+.horizontal-categories::-webkit-scrollbar-track {
+  background: rgba(0, 8, 20, 0.3);
+  border-radius: 4px;
+}
+
+.horizontal-categories::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 204, 255, 0.5);
+  border-radius: 4px;
+}
+
+.category-card {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.category-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.product-tag {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.product-tag:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Ürün kategorileri yatay kaydırma */
+.products-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 204, 255, 0.5) rgba(0, 8, 20, 0.3);
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 10px;
+}
+
+.products-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.products-container::-webkit-scrollbar-track {
+  background: rgba(0, 8, 20, 0.3);
+  border-radius: 4px;
+}
+
+.products-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 204, 255, 0.5);
+  border-radius: 4px;
+}
+
+/* Ürün kategori kartları */
+.product-category-card {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border-top: 3px solid #00ccff;
+}
+
+.product-category-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  border-top: 3px solid #ff2975;
+}
+
+/* Ürün etiketleri */
+.product-items {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 204, 255, 0.3) rgba(0, 8, 20, 0.2);
+}
+
+.product-items::-webkit-scrollbar {
+  width: 4px;
+}
+
+.product-items::-webkit-scrollbar-track {
+  background: rgba(0, 8, 20, 0.2);
+  border-radius: 2px;
+}
+
+.product-items::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 204, 255, 0.3);
+  border-radius: 2px;
+}
+
+.product-item-tag {
+  cursor: pointer;
+}
+
+.product-item-tag:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 41, 117, 0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
     ")),
     
     # jQuery yükle
@@ -1927,7 +2033,7 @@ document.addEventListener('DOMContentLoaded', function() {
   # Canvas container
   div(id = "canvas-container"),
   
-  # Ana sayfa başlık ve alt başlık
+  
   # Ana sayfa başlık ve alt başlık
   conditionalPanel(
     condition = "input.navTab == 'home'",
@@ -1952,14 +2058,14 @@ document.addEventListener('DOMContentLoaded', function() {
     )
   ),
   
-  # Sağdaki kayan ürün kartları
-  conditionalPanel(
-    condition = "input.navTab == 'home'",
-    div(id = "scrolling-divs-container",
-        style = "opacity: 1; visibility: visible;",
-        uiOutput("productCards")
-    )
-  ),
+  # # Sağdaki kayan ürün kartları
+  # conditionalPanel(
+  #   condition = "input.navTab == 'home'",
+  #   div(id = "scrolling-divs-container",
+  #       style = "opacity: 1; visibility: visible;",
+  #       uiOutput("productCards")
+  #   )
+  # ),
   
   # Tüm sayfa UI'ını dinamik olarak oluştur
   uiOutput("dynamicUI")
@@ -2141,7 +2247,7 @@ server <- function(input, output, session) {
           div(class = "container-fluid",
               # Logo
               div(class = "navbar-header",
-                  span(class = "navbar-brand", "ProInsure")
+                  span(class = "navbar-brand", "GEwend Analytics")
               ),
               
               # Merkezdeki tüm menüler için bir container div
@@ -2179,7 +2285,7 @@ server <- function(input, output, session) {
                 # actionButton("contactBtn", t$connect, class = "btn",
                 #              onclick = "Shiny.setInputValue('navTab', 'contact')"),
                 # Dil değiştirme butonuna onClick özelliği ekleyin
-                actionButton("switchLanguage", ifelse(lang == "tr", "EN", "TR"), 
+                actionButton("switchLanguage", ifelse(lang == "tr", "EN", "TR"),
                              class = "lang-btn")
               )
           )
@@ -2236,6 +2342,62 @@ server <- function(input, output, session) {
             )
           ),
           
+          # Öne Çıkan Özellikler bölümünden sonra eklenecek
+          # Ürün Kategorileri bölümü - yatay kaydırmalı
+          div(
+            style = "padding: 40px 20px; margin-top: 60px; background: linear-gradient(180deg, rgba(0,8,20,0) 0%, rgba(0,8,20,0.5) 100%);",
+            h2(style = "text-align: center; font-size: 36px; margin-bottom: 40px; color: #00ccff;", 
+               "Ürün Kategorileri"),
+            
+            # Yatay kaydırılabilir kartlar
+            div(class = "products-container",
+                style = "display: flex; overflow-x: auto; padding: 20px 0; gap: 25px; margin: 0 auto; max-width: 90%; position: relative;",
+                
+                # Kategori kartları
+                lapply(seq_along(product_data), function(idx) {
+                  cname <- names(product_data)[idx]
+                  cat_name <- t[[cname]]
+                  
+                  div(class = "product-category-card", 
+                      style = "flex: 0 0 300px; min-width: 300px; background-color: rgba(0,8,20,0.7); 
+                  border-radius: 12px; padding: 25px; transition: all 0.3s ease;",
+                      
+                      # Kategori başlığı
+                      h3(cat_name, 
+                         style = "color: #00ccff; text-align: center; margin-bottom: 15px; font-size: 22px;"),
+                      
+                      # Kategori açıklaması
+                      p("Aktüeryal çözümler için profesyonel araçlar", 
+                        style = "color: #aaa; text-align: center; font-size: 14px; margin-bottom: 20px;"),
+                      
+                      # Ürün listesi (etiketler)
+                      div(class = "product-items",
+                          style = "height: 200px; overflow-y: auto; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;",
+                          
+                          # Bu kategorideki ürünler
+                          lapply(product_data[[cname]], function(p) {
+                            div(class = "product-item-tag",
+                                style = "background: rgba(0,204,255,0.1); border-radius: 30px; 
+                            padding: 8px 15px; display: flex; align-items: center;
+                            border-left: 2px solid #00ccff; border-right: 2px solid #ff2975;
+                            transition: all 0.2s ease;",
+                                tags$i(class = paste0("fas fa-", p$icon), 
+                                       style = "margin-right: 8px; color: #00ccff;"),
+                                span(p$name, style = "color: #fff; font-size: 14px;")
+                            )
+                          })
+                      )
+                  )
+                })
+            ),
+            
+            # # Kaydırma ipucu
+            # div(style = "text-align: center; margin-top: 20px; color: #aaa;",
+            #     tags$i(class = "fas fa-arrow-left", style = "color: #00ccff; margin-right: 10px;"),
+            #     span("Ürünleri görmek için sağa-sola kaydırın"),
+            #     tags$i(class = "fas fa-arrow-right", style = "color: #00ccff; margin-left: 10px;")
+            # )
+          ),
           
           
           # Slider Bölümü - Tamamen yeni ve basit yaklaşım
@@ -2722,6 +2884,50 @@ server <- function(input, output, session) {
       )))
   }
   )
+  
+  # Kategori kartları için renderUI
+  output$categoryCards <- renderUI({
+    lang <- current_lang()
+    t <- translations[[lang]]
+    
+    lapply(seq_along(product_data), function(idx) {
+      cname <- names(product_data)[idx]
+      cat_name <- t[[cname]]
+      products <- product_data[[cname]]
+      
+      iconColors <- c("#00ccff", "#ff2975", "#7b3fe4", "#ff8d3f", "#2ecc71", "#9b59b6")
+      color <- iconColors[(idx %% length(iconColors)) + 1]
+      
+      div(class = "category-card",
+          style = paste0("flex: 0 0 300px; background: rgba(0,8,20,0.7); border-radius: 12px; padding: 25px; 
+                      min-width: 300px; transition: all 0.3s ease; border-top: 3px solid ", color, ";"),
+          
+          # Kategori başlığı
+          h3(cat_name, style = paste0("color: ", color, "; text-align: center; margin-bottom: 20px; font-size: 22px;")),
+          
+          # Alt yazı
+          p("Aktüeryal çözümler için profesyonel araçlar", 
+            style = "color: #aaa; text-align: center; font-size: 14px; margin-bottom: 20px;"),
+          
+          # Ürün listesi kutucukları
+          div(class = "product-tags",
+              style = "display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;",
+              
+              lapply(products, function(p) {
+                div(class = "product-tag",
+                    style = paste0("background: rgba(", substr(gsub("#", "", color), 1, 2), ",", 
+                                   substr(gsub("#", "", color), 3, 4), ",", 
+                                   substr(gsub("#", "", color), 5, 6), ",0.15); 
+                               border-radius: 30px; padding: 8px 15px; display: flex; align-items: center;"),
+                    tags$i(class = paste0("fas fa-", p$icon), 
+                           style = paste0("margin-right: 8px; color: ", color, ";")),
+                    span(p$name, style = "color: #fff; font-size: 14px;")
+                )
+              })
+          )
+      )
+    })
+  })
   
   
 }
