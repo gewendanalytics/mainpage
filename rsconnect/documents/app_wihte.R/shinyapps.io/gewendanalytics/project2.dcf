@@ -1,12 +1,12 @@
-name: project
-title: project
+name: project2
+title: project2
 username: gewendanalytics
 account: gewendanalytics
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
-appId: 14681494
-bundleId: 10234150
-url: https://gewendanalytics.shinyapps.io/project/
+appId: 14699058
+bundleId: 10240762
+url: https://gewendanalytics.shinyapps.io/project2/
 version: 1
 asMultiple: FALSE
 asStatic: FALSE
