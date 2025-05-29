@@ -6,6 +6,7 @@ library(fontawesome)
 library(waiter) # Yükleme animasyonu için
 
 Sys.setlocale(locale = "Turkish")
+#
 
 translations <- list(
   tr = list(
