@@ -921,8 +921,9 @@ server <- function(input, output, session) {
                  "Ürün Kategorileri"),
               
               # Yatay kaydırılabilir kartlar
+              # Yatay kaydırılabilir kartlar
               div(class = "products-container",
-                  style = "display: flex; overflow-x: auto; padding: 20px 0; gap: 25px; margin: 0 auto; max-width: 90%; position: relative;",
+                  style = "display: flex; overflow-x: auto; padding: 20px 0; gap: 25px; margin: 0 auto; position: relative; justify-content: center;",
                   
                   # Kategori kartları
                   lapply(seq_along(product_data), function(idx) {
